@@ -4,6 +4,7 @@ import {
   IsNull,
   Repository,
 } from 'typeorm';
+
 import { ErrorEnum } from '../../error.enum';
 import { Nullable } from '../../utils/types';
 import { User } from '../models/user.entity';

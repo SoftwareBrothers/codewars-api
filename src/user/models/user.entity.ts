@@ -4,9 +4,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { UserStatistic } from '../../user-statistic/models/user-statistic.entity';
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
@@ -30,4 +33,7 @@ export class User extends BaseEntity {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   public deletedAt: Date;
+
+  @OneToMany(() => UserStatistic, (userStatistic) => userStatistic.user, { onDelete: 'CASCADE' })
+  public statistics: UserStatistic[];
 }

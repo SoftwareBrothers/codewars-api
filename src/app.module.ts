@@ -1,11 +1,8 @@
-import path from 'path';
-
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
-import Environment, { isEnvironment } from './config/environment';
 import { typeOrmConfig } from './config/typeorm.config';
 import { UserModule } from './user/user.module';
 
@@ -17,7 +14,7 @@ import { UserModule } from './user/user.module';
       //   isEnvironment(Environment.TEST) ? '.env.test' : '.env'
       // ),
       envFilePath: [
-        '.env'
+        '.env',
       ],
       isGlobal: true,
     }),
