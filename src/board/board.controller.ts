@@ -1,9 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
 
 import { BoardStatisticResponse } from './models/board-statistic.response';
 import { BoardTransformer } from './transformers/board.transformer';
 import { BoardService } from './board.service';
+import { GetBoardDto } from './dto/get-board.dto';
 
 @Controller('board')
 @ApiTags('Board')
@@ -15,8 +16,8 @@ export class BoardController {
 
   @Get()
   @ApiOkResponse({ type: BoardStatisticResponse, isArray: true })
-  public async getBoard(): Promise<BoardStatisticResponse[]> {
-    const statistics = await this.boardService.getBoard();
+  public async getBoard(@Query() getBoardDto: GetBoardDto): Promise<BoardStatisticResponse[]> {
+    const statistics = await this.boardService.getBoard(getBoardDto);
 
     return this.boardTransformer.transformAll(statistics);
   }
