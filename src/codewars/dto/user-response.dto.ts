@@ -1,6 +1,8 @@
-import { LanguageEnum } from '../../utils/enums/language.enum';
+import { LanguageEnum } from '../enums/language.enum';
 
-export class CodewarsUserDto {
+import { RankDto } from './rank.dto';
+
+export class UserResponseDto {
     public username: string;
 
     public name: string;
@@ -11,10 +13,12 @@ export class CodewarsUserDto {
 
     public leaderboardPosition: number | null;
 
-    public statistics: {
-        language: LanguageEnum,
-        score: number
-    }[]
+    public skills: string[] | null;
+
+    public ranks: {
+        'overall': RankDto,
+        'languages': Record<LanguageEnum, RankDto>
+    };
 
     public codeChallenges: {
         'totalAuthored': number,

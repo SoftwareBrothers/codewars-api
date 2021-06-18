@@ -1,7 +1,8 @@
-import { HttpModule, HttpService, Module } from '@nestjs/common';
+import { HttpModule, Module } from '@nestjs/common';
 
 import { CodewarsProvider } from './providers/codewars.provider';
 import { CodewarsService } from './codewars.service';
+import { UserTransformer } from './transformers/user.transformer';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { CodewarsService } from './codewars.service';
   providers: [
     CodewarsProvider,
     CodewarsService,
+    UserTransformer,
   ],
   exports: [
     CodewarsService,

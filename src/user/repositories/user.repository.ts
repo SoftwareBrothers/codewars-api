@@ -26,4 +26,8 @@ export class UserRepository extends Repository<User> {
 
     return user;
   }
+
+  public getAll(): Promise<User[]> {
+    return this.find();
+  }
 }
