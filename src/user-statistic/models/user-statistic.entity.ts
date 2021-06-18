@@ -35,6 +35,6 @@ export class UserStatistic extends BaseEntity {
   @Column()
   public score: number;
 
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'date' })
   public date: Date;
 }

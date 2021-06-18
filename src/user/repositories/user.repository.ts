@@ -1,4 +1,5 @@
 import { NotFoundException } from '@nestjs/common';
+import moment from 'moment';
 import {
   EntityRepository,
   IsNull,
@@ -41,6 +42,9 @@ export class UserRepository extends Repository<User> {
     const allItems = await queryBuilder;
     const count = allItems.length;
 
+    const dateFrom =  getBoardDto.dateFrom ? moment(getBoardDto.dateFrom).format('YYYY-MM-DD'): null;
+    const dateTo =  getBoardDto.dateTo ? moment(getBoardDto.dateTo).format('YYYY-MM-DD'): null;
+
     const offset = (getBoardDto.page - 1) * getBoardDto.limit;
     const items = await this.query(`
     select u.id, u.username, u.name, u.rank, s.score 
@@ -49,8 +53,11 @@ export class UserRepository extends Repository<User> {
         select distinct on (user_id) us.*
         from user_statistics us
         WHERE language = '${getBoardDto.language}'
+        ${dateFrom ? `AND date >= '${dateFrom}'` : ''}
+        ${dateTo ? `AND date <= '${dateTo}'` : ''}
         order by user_id, date desc
     ) AS s ON (u.id = s.user_id)
+    WHERE score IS NOT NULL
     order by ${getBoardDto.sortBy} ${getBoardDto.sortOrder}
     limit ${getBoardDto.limit}
     offset ${offset}
@@ -62,7 +69,7 @@ export class UserRepository extends Repository<User> {
         itemCount: items.length,
         totalItems: count,
         itemsPerPage: getBoardDto.limit,
-        totalPages: Math.floor(count / getBoardDto.limit),
+        totalPages: Math.floor(count / getBoardDto.limit) + 1,
         currentPage: getBoardDto.page,
       },
     };

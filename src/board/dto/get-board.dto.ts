@@ -1,4 +1,4 @@
-import { IsDate, IsEnum, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsDate, IsEnum, IsNotEmpty, IsOptional, MaxDate } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 
@@ -17,11 +17,12 @@ export class GetBoardDto extends CursorQuery {
   @Type(() => Date)
   @IsDate()
   @ApiProperty({ example: '2020-01-01', required: false })
-  public dateFrom: Nullable<Date>;
+  public dateFrom: Nullable<string>;
 
   @IsOptional()
   @Type(() => Date)
   @IsDate()
+  @MaxDate(new Date())
   @ApiProperty({ example: '2020-01-01', required: false })
   public dateTo: Nullable<Date>;
 
