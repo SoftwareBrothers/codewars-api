@@ -8,6 +8,7 @@ import { database, codewars } from './config';
 import { UserStatisticModule } from './user-statistic/user-statistic.module';
 import { UserModule } from './user/user.module';
 import { CodewarsModule } from './codewars/codewars.module';
+import { UserChallengeModule } from './user-challenge/user-challenge.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { CodewarsModule } from './codewars/codewars.module';
     BoardModule,
     UserModule,
     UserStatisticModule,
+    UserChallengeModule,
     CodewarsModule,
   ],
   controllers: [AppController],
