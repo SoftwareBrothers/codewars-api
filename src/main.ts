@@ -7,17 +7,22 @@ import { SanitizePipe } from './utils/pipes/sanitize.pipe';
 import validationPipe from './utils/pipes/validation.pipe';
 
 const bootstrap = async () => {
-  const app = await NestFactory.create(AppModule);
+  try {
+    const app = await NestFactory.create(AppModule);
 
-  SwaggerSetup(app);
+    SwaggerSetup(app);
 
-  app.enableCors();
-  app.useGlobalPipes(new SanitizePipe());
-  app.useGlobalPipes(validationPipe);
+    app.enableCors();
+    app.useGlobalPipes(new SanitizePipe());
+    app.useGlobalPipes(validationPipe);
 
-  useContainer(app.select(AppModule), { fallbackOnErrors: true });
+    useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
-  await app.listen(3000);
+    await app.listen(process.env.PORT);
+  } catch (e) {
+  // eslint-disable-next-line no-console
+    console.log('Error occurred when starting Nest', e);
+  }
 };
 
 bootstrap();

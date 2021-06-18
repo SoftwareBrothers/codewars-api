@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { database } from './config';
+import { UserStatisticModule } from './user-statistic/user-statistic.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -24,6 +26,8 @@ import { database } from './config';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => configService.get('database'),
     }),
+    UserModule,
+    UserStatisticModule,
   ],
   controllers: [AppController],
   providers: [],
