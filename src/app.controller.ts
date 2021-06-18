@@ -1,6 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 
 import { CodewarsService } from './codewars/codewars.service';
+import { CodewarsUserDto } from './codewars/dto/codewars-user.dto';
 @Controller()
 export class AppController {
   public constructor(
@@ -13,8 +14,8 @@ export class AppController {
   }
 
   @Get('test')
-  public async test(): Promise<void> {
-    await this.codewarsService.getUserData('przemyslaw-szejna-sb');
+  public test(): Promise<CodewarsUserDto> {
+    return this.codewarsService.getUserData('przemyslaw-szejna-sb');
   }
 }
 
