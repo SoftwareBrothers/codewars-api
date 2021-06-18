@@ -629,7 +629,7 @@
     tslib "2.2.0"
     uuid "8.3.2"
 
-"@nestjs/config@^0.6.1":
+"@nestjs/config@^0.6.3":
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/@nestjs/config/-/config-0.6.3.tgz#ab0c0dccf79696509ced463a888567219c2e5b7d"
   integrity sha512-JxvvUpmH0/WOrTB+zh8dEkxSUQXhB7V3d/qeQXyCnMiEFjaq89+fNFztpWjz4DlOfdS4/eYTzIEy9PH2uGnfzA==

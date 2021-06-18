@@ -22,6 +22,9 @@
     "import/core-modules": ["axios"]
   },
   "rules": {
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/ban-types": "off",
     "semi": ["error", "always"],
     "jsx-quotes": "error",
     "lines-between-class-members": "error",
