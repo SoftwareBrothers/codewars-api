@@ -7,6 +7,7 @@ import { BoardModule } from './board/board.module';
 import { database } from './config';
 import { UserStatisticModule } from './user-statistic/user-statistic.module';
 import { UserModule } from './user/user.module';
+import { CodewarsModule } from './codewars/codewars.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { UserModule } from './user/user.module';
     BoardModule,
     UserModule,
     UserStatisticModule,
+    CodewarsModule,
   ],
   controllers: [AppController],
   providers: [],
