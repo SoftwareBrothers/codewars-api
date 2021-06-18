@@ -17,7 +17,7 @@ export class UserStatisticService {
         user.id,
         new Date(),
         stats.language,
-        stats.score
+        stats.score,
       );
     }
   }

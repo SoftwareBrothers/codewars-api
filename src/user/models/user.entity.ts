@@ -21,10 +21,16 @@ export class User extends BaseEntity {
   public username: string;
 
   @Column({ nullable: true })
-  public firstName: string;
+  public name: string;
 
   @Column({ nullable: true })
-  public lastName: string;
+  public honor: number;
+
+  @Column({ nullable: true })
+  public clan: string;
+
+  @Column({ name: 'leaderboard_position', nullable: true })
+  public leaderboardPosition: number;
 
   @CreateDateColumn({ name: 'created_at' })
   public createdAt: Date;

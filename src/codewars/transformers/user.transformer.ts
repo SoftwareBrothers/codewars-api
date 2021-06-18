@@ -20,7 +20,7 @@ export class UserTransformer {
 
     return {
       username: user.username,
-      name: user.username,
+      name: user.name,
       clan: user.clan,
       honor: user.honor,
       codeChallenges: user.codeChallenges,

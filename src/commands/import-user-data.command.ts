@@ -19,9 +19,20 @@ export const handler: Handler = async (): Promise<void> => {
 
   const users = await userService.getAllUsers();
   const promises = users.map((user: User) => codewarsService.getUserData(user.username)
-    .then((data: CodewarsUserDto) => userStatisticService.persistCodewarsUserStatistics(user, data))
+    .then(async (data: CodewarsUserDto) => {
+      await userService.updateUserGlobalStatistics(user, data);
+      await userStatisticService.persistCodewarsUserStatistics(user, data);
+    })
     .then(() => codewarsService.getUserChallenges(user.username))
-    .then((data) => userChallengeService.persistCodewarsUserChallenges(user, data)));
+    .then((data) => userChallengeService.persistCodewarsUserChallenges(user, data))
+    .catch(({ message }) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      if (message.includes('404')) {
+        console.error(`User ${user.username} NOT FOUND`);
+      } else {
+        console.error(message);
+      }
+    }));
 
   await Promise.all(promises);
 };
