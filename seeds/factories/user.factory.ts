@@ -6,13 +6,11 @@ export const userFactory = async (
   user?: Partial<User>
 ): Promise<User> => {
   const username = faker.internet.userName();
-  const firstName = faker.name.firstName();
-  const lastName = faker.name.lastName();
-
+  const name = `${faker.name.firstName()} ${faker.name.lastName()}`;
+  
   return User.create({
     username,
-    firstName,
-    lastName,
+    name,
     ...user,
   }).save();
 };

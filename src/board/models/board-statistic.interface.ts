@@ -1,6 +1,10 @@
 export interface BoardStatistic
  {
+  id: number;
+
   rank: string;
+
+  username: string;
 
   name: string;
 

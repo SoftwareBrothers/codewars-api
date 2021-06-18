@@ -8,10 +8,7 @@ export class UserResponse {
   public username: string;
 
   @ApiProperty()
-  public firstName: string;
-
-  @ApiProperty()
-  public lastName: string;
+  public name: string;
 
   @ApiProperty()
   public createdAt: Date;

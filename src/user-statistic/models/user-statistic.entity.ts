@@ -7,8 +7,8 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { LanguageEnum } from '../../codewars/enums/language.enum';
 import { User } from '../../user/models/user.entity';
+import { LanguageEnum } from '../../utils/enums/language.enum';
 
 @Entity({ name: 'user_statistics' })
 export class UserStatistic extends BaseEntity {

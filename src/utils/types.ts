@@ -2,6 +2,8 @@ import { IsInt, Max, Min } from 'class-validator';
 import { Optional } from '@nestjs/common';
 import { Type } from 'class-transformer';
 
+import { PaginationMeta } from './models/meta.interface';
+
 export type Nullable<T> = T | null;
 export type ValueOf<T> = T[keyof T];
 export type RawFile = {
@@ -13,6 +15,11 @@ export type RawFile = {
   size: number;
 };
 export type RawFileOrBuffer = RawFile | Buffer;
+
+export type Paginated<T> = {
+  items: T[];
+  meta: PaginationMeta;
+};
 
 export type Cursor = {
   page: number;

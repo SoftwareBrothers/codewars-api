@@ -3,9 +3,9 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 
 import { CursorQuery, Nullable } from '../../utils/types';
-import { LanguageEnum } from '../../codewars/enums/language.enum';
 import { BoardSortEnum } from '../../codewars/enums/board-sort.enum';
 import { SortOrderEnum } from '../../utils/enums/sort-order.enum';
+import { LanguageEnum } from '../../utils/enums/language.enum';
 
 export class GetBoardDto extends CursorQuery {
   @IsNotEmpty()

@@ -5,8 +5,8 @@ import {
 import moment from 'moment';
 
 import { UserStatistic } from '../models/user-statistic.entity';
-import { LanguageEnum } from '../../utils/enums/language.enum';
 import { SortOrderEnum } from '../../utils/enums/sort-order.enum';
+import { LanguageEnum } from '../../utils/enums/language.enum';
 
 @EntityRepository(UserStatistic)
 export class UserStatisticRepository extends Repository<UserStatistic> {

@@ -1,24 +1,31 @@
 import { Injectable } from '@nestjs/common';
 
+import { Paginated } from '../../utils/types';
 import { BoardStatistic } from '../models/board-statistic.interface';
 import { BoardStatisticResponse } from '../models/board-statistic.response';
 
-export interface UserTransformerOptions {
-  includeBrands?: boolean;
-}
-
 @Injectable()
 export class BoardTransformer {
-
   public transform(statistic: BoardStatistic): BoardStatisticResponse {
     return {
+      id: statistic.id,
       rank: statistic.rank,
       name: statistic.name,
-      score: statistic.score,
+      username: statistic.username,
+      score: statistic.score ?? 0,
     };
   }
 
-  public transformAll(statistics: BoardStatistic[]): Promise<BoardStatisticResponse[]> {
-    return Promise.all(statistics.map(statistic => this.transform(statistic)));
+  public transformAll(statistics: BoardStatistic[]): BoardStatisticResponse[] {
+    return statistics.map(statistic => this.transform(statistic));
+  }
+
+  public async transformPaginated(
+    statistics: Paginated<BoardStatistic>,
+  ): Promise<Paginated<BoardStatisticResponse>> {
+    return {
+      items: this.transformAll(statistics.items),
+      meta: statistics.meta,
+    };
   }
 }

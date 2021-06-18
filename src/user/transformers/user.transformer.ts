@@ -14,8 +14,7 @@ export class UserTransformer {
     return {
       id: user.id,
       username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      name: user.name,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     };
