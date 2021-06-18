@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { BoardModule } from './board/board.module';
-import { database } from './config';
+import { database, codewars } from './config';
 import { UserStatisticModule } from './user-statistic/user-statistic.module';
 import { UserModule } from './user/user.module';
 import { CodewarsModule } from './codewars/codewars.module';
@@ -20,6 +20,7 @@ import { CodewarsModule } from './codewars/codewars.module';
       ],
       load:  [
         database,
+        codewars,
       ],
       isGlobal: true,
     }),
@@ -34,6 +35,5 @@ import { CodewarsModule } from './codewars/codewars.module';
     CodewarsModule,
   ],
   controllers: [AppController],
-  providers: [],
 })
 export class AppModule {}
