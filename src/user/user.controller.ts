@@ -15,7 +15,7 @@ export class UserController {
 
   @Get(':userId')
   @ApiOkResponse({ type: UserResponse })
-  public async getLoggedInUser(@Param('userId') userId: number): Promise<UserResponse> {
+  public async getUser(@Param('userId') userId: number): Promise<UserResponse> {
     const user = await this.userService.getUser(userId);
 
     return this.userTransformer.transform(user);
