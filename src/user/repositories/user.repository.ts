@@ -76,5 +76,14 @@ export class UserRepository extends Repository<User> {
     }
 
     return user;
+
+  }
+
+  public async updateUser(userId: number, data: Partial<User>): Promise<User> {
+    const user = await this.getById(userId);
+
+    Object.assign(user, data);
+
+    return user.save();
   }
 }

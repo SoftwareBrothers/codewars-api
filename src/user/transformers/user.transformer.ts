@@ -9,12 +9,13 @@ export interface UserTransformerOptions {
 
 @Injectable()
 export class UserTransformer {
-
   public async transform(user: User): Promise<UserResponse> {
     return {
       id: user.id,
       username: user.username,
       name: user.name,
+      rank: user.rank,
+      honor: user.honor,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     };

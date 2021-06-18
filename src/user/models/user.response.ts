@@ -11,6 +11,12 @@ export class UserResponse {
   public name: string;
 
   @ApiProperty()
+  public rank: string;
+
+  @ApiProperty()
+  public honor: number;
+
+  @ApiProperty()
   public createdAt: Date;
 
   @ApiProperty()

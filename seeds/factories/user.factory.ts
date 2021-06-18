@@ -7,10 +7,12 @@ export const userFactory = async (
 ): Promise<User> => {
   const username = faker.internet.userName();
   const name = `${faker.name.firstName()} ${faker.name.lastName()}`;
+  const rank = Math.floor(Math.random() * 10);
   
   return User.create({
     username,
     name,
+    rank: `${rank} kyu`,
     ...user,
   }).save();
 };
