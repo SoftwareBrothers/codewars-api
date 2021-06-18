@@ -5,6 +5,7 @@ import { CodewarsUserChallengeDto } from '../codewars/dto/codewars-user-challeng
 
 import { UserChallengeRepository } from './repositories/user-challenge.repository';
 import { ChallengeRepository } from './repositories/challenge.repository';
+import { UserChallenge } from './models/user-challenge.entity';
 
 @Injectable()
 export class UserChallengeService {
@@ -12,6 +13,10 @@ export class UserChallengeService {
     private readonly challengeRepository: ChallengeRepository,
     private readonly userChallengeRepository: UserChallengeRepository,
   ) {}
+
+  public findUserChallenges(userId: number): Promise<UserChallenge[]> {
+    return this.userChallengeRepository.findByUserId(userId);
+  }
 
   public async persistCodewarsUserChallenges(user: User, challenges: CodewarsUserChallengeDto[]): Promise<void> {
     const promises = challenges.map(async (data: CodewarsUserChallengeDto) => {

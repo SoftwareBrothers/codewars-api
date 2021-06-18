@@ -8,6 +8,13 @@ import { LanguageEnum } from '../../utils/enums/language.enum';
 
 @EntityRepository(UserChallenge)
 export class UserChallengeRepository extends Repository<UserChallenge> {
+  public findByUserId(userId: number): Promise<UserChallenge[]> {
+    return this.find({
+      where: { userId },
+      relations: ['challenge'],
+    });
+  }
+
   public findByUserIdAndChallengeId(userId: number, challengeId: number): Promise<UserChallenge | null> {
     return this.findOne({
       where: { userId,  challengeId },
