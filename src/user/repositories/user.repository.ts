@@ -17,6 +17,12 @@ export class UserRepository extends Repository<User> {
     });
   }
 
+  public getAll(): Promise<User[]> {
+    return this.find({
+      where: { deletedAt: IsNull() },
+    });
+  }
+
   public async getById(userId: number): Promise<User> {
     const user = await this.findById(userId);
 
