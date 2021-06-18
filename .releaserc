@@ -1,0 +1,21 @@
+{
+  "branches": [
+    "production",
+    { "name": "master", "channel": "pre/rc", "prerelease": "rc" },
+  ],
+  "plugins": [
+    ["@semantic-release/commit-analyzer", {
+      "preset": "angular",
+      "releaseRules": [
+        {"type": "feat", "release": "minor"},
+        {"type": "docs", "release": "patch"},
+        {"type": "refactor", "release": "patch"},
+        {"scope": "no-release", "release": "patch"},
+         {"type": "*", "release": "patch"},
+      ]
+    }],
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/github",
+    "@semantic-release/git",
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "prefer-arrow", "jsdoc", "jest", "import"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:jest/recommended"
+  ],
+  "settings": {
+    "import/core-modules": ["axios"]
+  },
+  "rules": {
+    "semi": ["error", "always"],
+    "jsx-quotes": "error",
+    "lines-between-class-members": "error",
+    "strict": "error",
+    "object-curly-spacing": ["error", "always"],
+    "import/prefer-default-export": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "parent", "sibling", "index"],
+        "newlines-between": "always"
+      }
+    ],
+    "newline-before-return": "error",
+    "max-len": ["error", 140],
+    "@typescript-eslint/no-empty-function": "error",
+    "@typescript-eslint/no-useless-constructor": "error",
+    "@typescript-eslint/adjacent-overload-signatures": "error",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "default",
+        "format": ["camelCase", "PascalCase", "UPPER_CASE"]
+      },
+      {
+        "selector": "variable",
+        "format": ["camelCase", "UPPER_CASE", "PascalCase"]
+      },
+      {
+        "selector": "parameter",
+        "format": ["camelCase", "PascalCase"]
+      },
+      {
+        "selector": "memberLike",
+        "modifiers": ["private"],
+        "format": ["camelCase"]
+      },
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase"]
+      }
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "FunctionDeclaration": {
+          "parameters": "first"
+        },
+        "SwitchCase": 1
+      }
+    ],
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-misused-new": "error",
+    "@typescript-eslint/no-namespace": "error",
+    "@typescript-eslint/no-parameter-properties": "off",
+    "@typescript-eslint/consistent-type-assertions": "error",
+    "@typescript-eslint/no-use-before-declare": "off",
+    "@typescript-eslint/no-var-requires": "error",
+    "@typescript-eslint/prefer-for-of": "error",
+    "@typescript-eslint/prefer-function-type": "off",
+    "@typescript-eslint/prefer-namespace-keyword": "error",
+    "@typescript-eslint/type-annotation-spacing": "error",
+    "arrow-body-style": "error",
+    "arrow-parens": ["off", "as-needed"],
+    "constructor-super": "error",
+    "curly": ["error", "all"],
+    "dot-notation": "error",
+    "eol-last": ["error", "always"],
+    "guard-for-in": "error",
+    "no-trailing-spaces": "error",
+    "jest/expect-expect": [
+      "error",
+      {
+        "assertFunctionNames": [
+          "expect",
+          "request.*.expect",
+          "request.**.expect",
+          "request.*.expect*"
+        ]
+      }
+    ],
+    "new-parens": "error",
+    "no-bitwise": "error",
+    "no-caller": "error",
+    "no-cond-assign": "error",
+    "no-console": "error",
+    "no-debugger": "error",
+    "no-empty": "error",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "no-new-wrappers": "error",
+    "no-return-await": "error",
+    "no-throw-literal": "error",
+    "no-unsafe-finally": "error",
+    "no-unused-labels": "error",
+    "no-var": "error",
+    "object-shorthand": "error",
+    "prefer-const": "error",
+    "quote-props": ["error", "consistent-as-needed"],
+    "radix": "error",
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "never",
+        "asyncArrow": "always",
+        "named": "never"
+      }
+    ],
+    "use-isnan": "error",
+    "quotes": ["error", "single"],
+    "comma-dangle": ["error", "always-multiline"],
+    "@typescript-eslint/prefer-readonly": "error",
+    "prefer-arrow/prefer-arrow-functions": "error",
+    "spaced-comment": ["error", "always"],
+    "jsdoc/check-indentation": 1,
+    "jsdoc/check-alignment": 1,
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": ["_admin", "_id", "_decorated"]
+      }
+    ],
+    "@typescript-eslint/member-ordering": "error",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/require-await": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/**.spec.ts"],
+      "rules": {
+        "@typescript-eslint/unbound-method": "off",
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    },
+    {
+      "files": ["*.tsx"],
+      "rules": {
+        "react/prop-types": "off",
+        "react/jsx-filename-extension": "off",
+        "reactimport/extensions": "off",
+        "import/extensions": "off",
+        "import/no-unresolved": "off",
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    },
+    {
+      "files": ["*.resource.ts", "_*.tsx"],
+      "rules": {
+        "@typescript-eslint/naming-convention": "off"
+      }
+    },
+    {
+      "files": ["*.spec.ts", "*.e2e-spec.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-unsafe-return": "off"
+      }
+    },
+    {
+      "files": ["**/migrations/**"],
+      "rules": {
+        "@typescript-eslint/naming-convention": "off",
+        "max-len": "off",
+        "@typescript-eslint/explicit-member-accessibility": "off"
+      }
+    }
+  ]
+}
