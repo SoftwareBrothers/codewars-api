@@ -2,7 +2,7 @@ import { IsInt, Max, Min } from 'class-validator';
 import { Optional } from '@nestjs/common';
 import { Type } from 'class-transformer';
 
-import { PaginationMeta } from './models/meta.interface';
+import { PaginationMeta } from './models/pagination-meta.interface';
 
 export type Nullable<T> = T | null;
 export type ValueOf<T> = T[keyof T];

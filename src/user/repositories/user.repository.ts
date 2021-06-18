@@ -28,7 +28,7 @@ export class UserRepository extends Repository<User> {
 
   public async getUsersWithStatisticsQueryBuilder(getBoardDto: GetBoardDto): Promise<Paginated<BoardStatistic>> {
     const queryBuilder = this.query(`
-    select u.id, u.username, u.name, u.rank, s.score 
+    select u.id, u.username, u.name, s.score, s.rank, s.rank_name as rankname, s.rank_color as rankcolor
     from users u
     left join (
         select distinct on (user_id) us.*
@@ -47,7 +47,7 @@ export class UserRepository extends Repository<User> {
 
     const offset = (getBoardDto.page - 1) * getBoardDto.limit;
     const items = await this.query(`
-    select u.id, u.username, u.name, u.rank, s.score 
+    select u.id, u.username, u.name, s.score, s.rank, s.rank_name as rankname, s.rank_color as rankcolor
     from users u
     left join (
         select distinct on (user_id) us.*

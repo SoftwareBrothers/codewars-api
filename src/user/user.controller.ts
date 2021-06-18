@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOkResponse, ApiNotFoundResponse } from '@nestjs/swagger';
 
 import { UserResponse } from './models/user.response';
 import { UserTransformer } from './transformers/user.transformer';
@@ -15,6 +15,7 @@ export class UserController {
 
   @Get(':userId')
   @ApiOkResponse({ type: UserResponse })
+  @ApiNotFoundResponse()
   public async getUser(@Param('userId') userId: number): Promise<UserResponse> {
     const user = await this.userService.getUser(userId);
 

@@ -35,6 +35,15 @@ export class UserStatistic extends BaseEntity {
   @Column()
   public score: number;
 
+  @Column()
+  public rank: number;
+
+  @Column()
+  public rankName: string;
+
+  @Column()
+  public rankColor: string;
+
   @Column({ type: 'date' })
   public date: Date;
 }

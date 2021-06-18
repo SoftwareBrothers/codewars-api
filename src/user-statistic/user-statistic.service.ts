@@ -18,6 +18,9 @@ export class UserStatisticService {
         new Date(),
         stats.language,
         stats.score,
+        stats.rank,
+        stats.rankName,
+        stats.rankColor,
       );
     }
   }

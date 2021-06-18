@@ -2,11 +2,6 @@ import { Injectable } from '@nestjs/common';
 
 import { UserChallengeResponse } from '../models/user-challenge.response';
 import { UserChallenge } from '../models/user-challenge.entity';
-
-export interface UserTransformerOptions {
-  includeBrands?: boolean;
-}
-
 @Injectable()
 export class UserChallengeTransformer {
   public transform(userChallenge: UserChallenge): UserChallengeResponse {

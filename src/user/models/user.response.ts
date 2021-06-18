@@ -11,10 +11,13 @@ export class UserResponse {
   public name: string;
 
   @ApiProperty()
-  public rank: string;
+  public honor: number;
 
   @ApiProperty()
-  public honor: number;
+  public clan: string;
+
+  @ApiProperty()
+  public leaderboardPosition: number;
 
   @ApiProperty()
   public createdAt: Date;

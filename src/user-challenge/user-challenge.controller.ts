@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOkResponse, ApiNotFoundResponse } from '@nestjs/swagger';
 
 import { UserChallengeResponse } from './models/user-challenge.response';
 import { UserChallengeTransformer } from './transformers/user-challenge.transformer';
@@ -15,6 +15,7 @@ export class UserChallengeController {
 
   @Get()
   @ApiOkResponse({ type: UserChallengeResponse, isArray: true })
+  @ApiNotFoundResponse()
   public async getUserChallenges(@Param('userId') userId: number): Promise<UserChallengeResponse[]> {
     const userChallenges = await this.userChallengeService.findUserChallenges(userId);
 

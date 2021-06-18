@@ -22,7 +22,15 @@ export class UserStatisticRepository extends Repository<UserStatistic> {
       .getOne();
   }
 
-  public async upsertUserStatistics(userId: number, date: Date, language: LanguageEnum, score: number): Promise<UserStatistic> {
+  public async upsertUserStatistics(
+    userId: number,
+    date: Date,
+    language: LanguageEnum,
+    score: number,
+    rank: number,
+    rankName: string,
+    rankColor: string,
+  ): Promise<UserStatistic> {
     let stats = await this.findUserStatistics(userId, date, language);
 
     if (!stats) {
@@ -33,6 +41,9 @@ export class UserStatisticRepository extends Repository<UserStatistic> {
     }
 
     stats.score = score;
+    stats.rank = rank;
+    stats.rankName = rankName;
+    stats.rankColor = rankColor;
 
     return stats.save();
   }

@@ -24,9 +24,6 @@ export class User extends BaseEntity {
   public name: string;
 
   @Column({ nullable: true })
-  public rank: string;
-
-  @Column({ nullable: true })
   public honor: number;
 
   @Column({ nullable: true })

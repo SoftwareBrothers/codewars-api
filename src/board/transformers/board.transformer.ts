@@ -9,10 +9,12 @@ export class BoardTransformer {
   public transform(statistic: BoardStatistic): BoardStatisticResponse {
     return {
       id: statistic.id,
-      rank: statistic.rank,
       name: statistic.name,
       username: statistic.username,
       score: statistic.score ?? 0,
+      rank: statistic.rank,
+      rankName: statistic.rankname,
+      rankColor: statistic.rankcolor,
     };
   }
 

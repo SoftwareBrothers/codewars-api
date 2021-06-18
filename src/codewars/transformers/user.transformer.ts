@@ -16,6 +16,9 @@ export class UserTransformer {
     const statistics = languages.map((language: string) => ({
       language: this.transformLanguage(language),
       score: user.ranks.languages[language].score,
+      rank: user.ranks.overall.rank,
+      rankName: user.ranks.overall.name,
+      rankColor: user.ranks.overall.color,
     }));
 
     return {
@@ -29,6 +32,9 @@ export class UserTransformer {
         {
           language: LanguageEnum.General,
           score: user.ranks.overall.score,
+          rank: user.ranks.overall.rank,
+          rankName: user.ranks.overall.name,
+          rankColor: user.ranks.overall.color,
         },
         ...statistics,
       ],

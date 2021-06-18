@@ -13,7 +13,11 @@ export class CodewarsUserDto {
 
     public statistics: {
         language: LanguageEnum,
-        score: number
+        score: number,
+        rank: number,
+        rankName: string,
+        rankColor: string,
+
     }[]
 
     public codeChallenges: {
