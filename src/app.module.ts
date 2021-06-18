@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { typeOrmConfig } from './config/typeorm.config';
+import { UserStatisticModule } from './user-statistic/user-statistic.module';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -20,6 +21,7 @@ import { UserModule } from './user/user.module';
     }),
     TypeOrmModule.forRoot(typeOrmConfig),
     UserModule,
+    UserStatisticModule,
   ],
   controllers: [AppController],
   providers: [],
