@@ -1,17 +1,13 @@
-name: Deployment
+name: Deployment production
 
 on:
   release:
     types:
       - released
-      - prereleased
 jobs:
   deploy:
     name: Deploy
-    needs: test
     runs-on: ubuntu-latest
-    if: endsWith(github.ref, 'main') ||
-        endsWith(github.ref, 'production')
     env:
       CI: true
     steps:
@@ -28,11 +24,9 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - name: serverless deploy
-        if: endsWith(github.ref, 'main') ||
-            endsWith(github.ref, 'production')
         run: |
           yarn serverless config
-          yarn serverless deploy --stage ${GITHUB_REF##*/}
+          yarn serverless deploy --stage production
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
