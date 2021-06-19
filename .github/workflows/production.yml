@@ -17,12 +17,16 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - name: Load node_modules from cache
+      - name: Cache
         uses: actions/cache@v1
         id: cache
         with:
           path: node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      - name: Install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          yarn install --frozen-lockfile
       - name: serverless deploy
         run: |
           yarn serverless config
