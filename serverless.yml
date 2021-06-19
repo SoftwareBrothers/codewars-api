@@ -32,24 +32,6 @@ custom:
       'once',
       'wrappy',
       'end-of-stream',
-      'secure-json-parse',
-      'fast-glob',
-      'glob-parent',
-      'is-glob',
-      'is-extglob',
-      'micromatch',
-      'braces',
-      'picomatch',
-      'merge2',
-      'fill-range',
-      'to-regex-range',
-      '@nodelib/fs.stat',
-      '@nodelib/fs.walk',
-      '@nodelib/fs.scandir',
-      'run-parallel',
-      'fastq',
-      'reusify',
-      'hpagent'
     ]
 
 functions:
