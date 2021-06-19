@@ -43,6 +43,15 @@ lerna-debug.log*
 /docker/db
 /docker/logs
 
-#adminBro
+#adminJS
 .adminbro
 .cache
+
+# SonarQube
+.scannerwork
+
+# serverless
+.build
+.serverless
+.env.serverless
+.webpack

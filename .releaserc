@@ -1,7 +1,7 @@
 {
   "branches": [
     "production",
-    { "name": "master", "channel": "pre/rc", "prerelease": "rc" },
+    { "name": "main", "channel": "pre/rc", "prerelease": "rc" },
   ],
   "plugins": [
     ["@semantic-release/commit-analyzer", {

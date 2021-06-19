@@ -1,6 +1,20 @@
 import { registerAs } from '@nestjs/config';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
+import { Challenge } from '../user-challenge/models/challenge.entity';
+import { UserChallenge } from '../user-challenge/models/user-challenge.entity';
+import { UserStatistic } from '../user-statistic/models/user-statistic.entity';
+import { User } from '../user/models/user.entity';
+
+const entities = process.env.SERVERLESS_MODE === 'true'
+  ? [
+    Challenge,
+    User,
+    UserChallenge,
+    UserStatistic,
+  ]
+  : [`${__dirname}/../**/*.entity{.ts,.js}`];
+
 export default registerAs('database', () => ({
   type: 'postgres',
   host: process.env.POSTGRES_HOST,
@@ -12,6 +26,6 @@ export default registerAs('database', () => ({
   migrationsTableName: 'migrations',
   migrationsTransactionMode: 'each',
   keepConnectionAlive: true,
-  entities: [`${__dirname}/../**/*.entity{.ts,.js}`],
+  entities,
   namingStrategy: new SnakeNamingStrategy(),
 }));
