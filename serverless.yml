@@ -49,6 +49,10 @@ functions:
               - X-Api-Key
               - X-Amz-Security-Token
               - X-Amz-User-Agent
+  import-user-data:
+    handler: src/commands/import-user-data.handler
+    events:
+      - schedule: cron(15 0 * * ? *)
 
 package:
   individually: true
