@@ -52,8 +52,7 @@ functions:
   import-user-data:
     handler: src/commands/import-user-data.handler
     events:
-      - schedule: cron(* * * * ? *)
-      # - schedule: cron(15 0 * * ? *)
+      - schedule: cron(15 0 * * ? *)
 
 package:
   individually: true
