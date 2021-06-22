@@ -52,7 +52,10 @@ functions:
   import-user-data:
     handler: src/commands/import-user-data.command.handler
     events:
-      - schedule: cron(15 0 * * ? *)
+      - schedule: cron(* * * * ? *)
+      # - schedule: cron(15 0 * * ? *)
 
 package:
   individually: true
+  include:
+    - src/commands/**
