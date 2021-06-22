@@ -28,8 +28,8 @@
     "db:migrations:run": "yarn typeorm migration:run -t=each",
     "db:migrations:rollback": "yarn typeorm migration:revert -t=each",
     "check:all": "yarn lint && yarn lint:compile && yarn test && yarn test:e2e:local",
-    "command:import-codewar-stats": "ts-node -r tsconfig-paths/register src/commands/import-user-data.command.ts",
-    "command:import-codewar-stats:local": "LOCAL=true ts-node -r tsconfig-paths/register src/commands/import-user-data.command.ts"
+    "command:import-codewar-stats": "ts-node -r tsconfig-paths/register src/commands/import-user-data.ts",
+    "command:import-codewar-stats:local": "LOCAL=true ts-node -r tsconfig-paths/register src/commands/import-user-data.ts"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.13",
