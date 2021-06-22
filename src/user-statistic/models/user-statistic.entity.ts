@@ -30,7 +30,7 @@ export class UserStatistic extends BaseEntity {
     type: 'enum',
     enum: LanguageEnum,
   })
-  public language: string;
+  public language: LanguageEnum;
 
   @Column()
   public score: number;

@@ -7,10 +7,11 @@ import moment from 'moment';
 import { UserStatistic } from '../models/user-statistic.entity';
 import { SortOrderEnum } from '../../utils/enums/sort-order.enum';
 import { LanguageEnum } from '../../utils/enums/language.enum';
+import { Nullable } from '../../utils/types';
 
 @EntityRepository(UserStatistic)
 export class UserStatisticRepository extends Repository<UserStatistic> {
-  public findUserStatistics(userId: number, date: Date, language: LanguageEnum): Promise<UserStatistic | null> {
+  public findUserStatistics(userId: number, date: Date, language: LanguageEnum): Promise<Nullable<UserStatistic>> {
     const format = 'YYYY-MM-DD';
     const month = moment(date).format(format);
 
@@ -20,6 +21,13 @@ export class UserStatisticRepository extends Repository<UserStatistic> {
       .andWhere('language = :language', { language })
       .orderBy('date', SortOrderEnum.ASC)
       .getOne();
+  }
+
+  public findCurrentByUserIdAndLanguage(userId: number, language: LanguageEnum): Promise<Nullable<UserStatistic>> {
+    return this.findOne({
+      where: { userId,  language },
+      order: { date: SortOrderEnum.DESC },
+    });
   }
 
   public async upsertUserStatistics(
