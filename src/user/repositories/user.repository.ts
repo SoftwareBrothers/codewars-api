@@ -20,6 +20,15 @@ export class UserRepository extends Repository<User> {
     });
   }
 
+  public findByUsername(username: string): Promise<Nullable<User>> {
+    return this.findOne({
+      where: {
+        username,
+        deletedAt: IsNull(),
+      },
+    });
+  }
+
   public getAll(): Promise<User[]> {
     return this.find({
       where: { deletedAt: IsNull() },
@@ -83,7 +92,16 @@ export class UserRepository extends Repository<User> {
     }
 
     return user;
+  }
 
+  public async getByUsername(username: string): Promise<User> {
+    const user = await this.findByUsername(username);
+
+    if (!user) {
+      throw new NotFoundException(ErrorEnum.UserNotFound);
+    }
+
+    return user;
   }
 
   public async updateUser(userId: number, data: Partial<User>): Promise<User> {

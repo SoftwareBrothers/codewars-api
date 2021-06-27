@@ -21,4 +21,13 @@ export class UserController {
 
     return this.userTransformer.transform(user);
   }
+
+  @Get('username/:username')
+  @ApiOkResponse({ type: UserResponse })
+  @ApiNotFoundResponse()
+  public async getUserByUsername(@Param('username') username: string): Promise<UserResponse> {
+    const user = await this.userService.getUserByUsername(username);
+
+    return this.userTransformer.transform(user);
+  }
 }

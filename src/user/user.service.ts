@@ -15,6 +15,10 @@ export class UserService {
     return this.userRepository.getById(userId);
   }
 
+  public getUserByUsername(username: string): Promise<User> {
+    return this.userRepository.getByUsername(username);
+  }
+
   public getAllUsers(): Promise<User[]> {
     return this.userRepository.getAll();
   }
