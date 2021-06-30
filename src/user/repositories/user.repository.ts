@@ -36,37 +36,51 @@ export class UserRepository extends Repository<User> {
   }
 
   public async getUsersWithStatisticsQueryBuilder(getBoardDto: GetBoardDto): Promise<Paginated<BoardStatistic>> {
+    const dateFrom =  getBoardDto.dateFrom ? moment(getBoardDto.dateFrom).format('YYYY-MM-DD') : moment('2021-06-18').format('YYYY-MM-DD');
+    const dateTo =  getBoardDto.dateTo ? moment(getBoardDto.dateTo).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD');
+
     const queryBuilder = this.query(`
-    select u.id, u.username, u.name, s.score, s.rank, s.rank_name as rankname, s.rank_color as rankcolor
+    select u.id, u.username, u.name, (sto.score - sfrom.score) as score, sto.rank, sto.rank_name as rankname, sto.rank_color as rankcolor
     from users u
     left join (
         select distinct on (user_id) us.*
         from user_statistics us
         WHERE language = '${getBoardDto.language}'
-        order by user_id, date desc
-    ) AS s ON (u.id = s.user_id)
+        AND date >= '${dateFrom}'
+        order by user_id, date asc
+    ) AS sfrom ON (u.id = sfrom.user_id)
+    left join (
+      select distinct on (user_id) us.*
+      from user_statistics us
+      WHERE language = '${getBoardDto.language}'
+      AND date <= '${dateTo}'
+      order by user_id, date desc
+  ) AS sto ON (u.id = sto.user_id)
     order by ${getBoardDto.sortBy} ${getBoardDto.sortOrder}
     `);
 
     const allItems = await queryBuilder;
     const count = allItems.length;
 
-    const dateFrom =  getBoardDto.dateFrom ? moment(getBoardDto.dateFrom).format('YYYY-MM-DD'): null;
-    const dateTo =  getBoardDto.dateTo ? moment(getBoardDto.dateTo).format('YYYY-MM-DD'): null;
-
     const offset = (getBoardDto.page - 1) * getBoardDto.limit;
     const items = await this.query(`
-    select u.id, u.username, u.name, s.score, s.rank, s.rank_name as rankname, s.rank_color as rankcolor
+    select u.id, u.username, u.name, (sto.score - sfrom.score) as score, sto.rank, sto.rank_name as rankname, sto.rank_color as rankcolor
     from users u
     left join (
-        select distinct on (user_id) us.*
-        from user_statistics us
-        WHERE language = '${getBoardDto.language}'
-        ${dateFrom ? `AND date >= '${dateFrom}'` : ''}
-        ${dateTo ? `AND date <= '${dateTo}'` : ''}
-        order by user_id, date desc
-    ) AS s ON (u.id = s.user_id)
-    WHERE score IS NOT NULL
+      select distinct on (user_id) us.*
+      from user_statistics us
+      WHERE language = '${getBoardDto.language}'
+      AND date >= '${dateFrom}'
+      order by user_id, date asc
+    ) AS sfrom ON (u.id = sfrom.user_id)
+    left join (
+      select distinct on (user_id) us.*
+      from user_statistics us
+      WHERE language = '${getBoardDto.language}'
+      AND date <= '${dateTo}'
+      order by user_id, date desc
+    ) AS sto ON (u.id = sto.user_id)
+    WHERE sto.score IS NOT NULL
     order by ${getBoardDto.sortBy} ${getBoardDto.sortOrder}
     limit ${getBoardDto.limit}
     offset ${offset}
